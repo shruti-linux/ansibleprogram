@@ -1,0 +1,19 @@
+
+- name: installation of webserverand  creating a webpage
+  hosts: africa
+  tasks:
+  - name: instalation of my webserver
+    yum: 
+      name: httpd
+      state: present
+
+  - name: creating a webpage
+    copy:
+      content: " hello this is my first webpage"
+      dest: /var/www/html/index.html
+
+  - name: staring the service
+    service: 
+      name: httpd
+      state: started
+      enabled: true

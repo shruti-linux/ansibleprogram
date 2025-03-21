@@ -1,0 +1,30 @@
+---
+- name: Experimenting the variables in the same playbook
+  hosts: all
+  vars:
+    pkg: httpd
+    usr: dean
+  tasks:
+  - name: installing the package {{ pkg }} 
+    yum: 
+      name: "{{ pkg }}"
+      state: present
+ 
+  - name: create a webpage
+    copy:
+      content: " hi, Today we are learning variables in same file"
+      dest: /var/www/html/index.html
+
+  - name: start teh service with the pakge {{ pkg }}
+    service:
+      name: "{{ pkg }}"
+      state: restarted 
+      enabled: true
+   
+  - name: add auser  {{ usr }}
+    user:
+      name: "{{ usr }}"
+      state: present
+
+    
+

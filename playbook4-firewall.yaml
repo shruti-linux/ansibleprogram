@@ -1,0 +1,32 @@
+---
+- name: installation of firewall package and allowing httpd service
+  hosts: 
+  - america
+  - africa
+  tasks:
+  - name: installing the firewalld
+    yum: 
+      name: firewalld
+      state: present
+  
+  - name: start the firewall service
+    service: 
+      name: firewalld
+      state: started
+      enabled : true
+
+  - name: Allowing the httpd service
+    firewalld:
+     service: http
+     permanent: true
+     state: enabled
+     immediate: true
+
+  - name: Allowing the port number for httpd firewall
+    firewalld:
+      port: 80/tcp
+      permanent: true
+      state: enabled
+      immediate: true
+
+
