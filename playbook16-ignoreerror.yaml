@@ -1,0 +1,14 @@
+---
+- name: ignore error
+  hosts: country
+  tasks:
+  - name: install package
+    yum: 
+      name: httpddnikdjodjojcojojvf
+      state: present
+    ignore_errors: true
+
+  - name: create a file
+    copy:
+      content: " this is a file"
+      dest:  /var/www/html/index.html
